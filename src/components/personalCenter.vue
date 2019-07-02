@@ -16,26 +16,6 @@
             <mu-flex class="flex-wrapper" justify-content="start">
                 <mu-flex class="flex-demo" justify-content="center"></mu-flex>
             </mu-flex>
-            <!-- <mu-form
-                :model="form"
-                class="mu-demo-form"
-                :label-position="labelPosition"
-                label-width="100"
-            >
-                <mu-form-item prop="input" label="">
-                    <mu-text-field v-model="form.input" placeholder="请输入标题"></mu-text-field>
-                </mu-form-item>
-                <mu-form-item prop="textarea" label="">
-                    <mu-text-field
-                        style="padding-bottom: 20px"
-                        multi-line
-                        :rows="12"
-                        :rows-max="6"
-                        v-model="form.textarea"
-                        placeholder="说点什么"
-                    ></mu-text-field>
-                </mu-form-item>
-            </mu-form>-->
             <div class="content-text">
                 <input type="text" placeholder="请输入标题..." class="input-text">
                 <textarea name id cols="30" rows="10" class="textarea-text" placeholder="说点什么..."></textarea>
@@ -77,6 +57,20 @@ export default {
     methods: {
         outPage() {
             this.$router.push("/layout/myHome");
+        },
+        getData() {
+            this.$axios({
+                url: '',
+                method: 'post',
+                headers: {
+                    'Content-Type':'application/json;charset=UTF-8'
+                },
+                data: this.form
+            }).then((result) => {
+                
+            }).catch((err) => {
+                
+            });
         }
     }
 };

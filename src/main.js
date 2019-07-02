@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
 import 'vuetify/dist/vuetify.min.css'
@@ -17,6 +18,7 @@ Vue.use(Vuetify)
 Vue.use(MuseUI);
 Vue.config.productionTip = false
 
+Vue.prototype.$axios = axios;
 VueTouch.config.swipe = {
   threshold: 100 //手指左右滑动距离
 }
