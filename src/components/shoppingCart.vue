@@ -43,7 +43,7 @@
                         <mu-paper>
                             <mu-list>
                                 <mu-sub-header>Today</mu-sub-header>
-                                <mu-list-item avatar>
+                                <mu-list-item avatar @click.native="changeValue" v-ripple>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
                                             <img src="../assets/images/avatar1.jpg">
@@ -56,7 +56,7 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
-                                <mu-list-item avatar>
+                                <mu-list-item avatar v-ripple>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
                                             <img src="../assets/images/avatar2.jpg">
@@ -69,7 +69,7 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
-                                <mu-list-item avatar>
+                                <mu-list-item avatar v-ripple>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
                                             <img src="../assets/images/avatar3.jpg">
@@ -82,7 +82,7 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
-                                <mu-list-item avatar>
+                                <mu-list-item avatar v-ripple>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
                                             <img src="../assets/images/avatar4.jpg">
@@ -95,7 +95,7 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
-                                <mu-list-item avatar>
+                                <mu-list-item avatar v-ripple>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
                                             <!-- <img src="../assets/images/uicon.jpg"> -->
@@ -171,6 +171,11 @@ export default {
             this.plusHeight = plus.navigator.getStatusbarHeight();
         }
     },
+    methods: {
+        changeValue(e) {
+            console.log(e.target.innerHTML)
+        }
+    }
 }
 </script>
 

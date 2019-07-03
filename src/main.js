@@ -19,6 +19,7 @@ Vue.use(MuseUI);
 Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios;
+// axios.defaults.baseURL = 'http://103.26.76.116:9999/';
 VueTouch.config.swipe = {
   threshold: 100 //手指左右滑动距离
 }

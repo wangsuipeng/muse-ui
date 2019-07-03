@@ -31,6 +31,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
     data() {
         return {
@@ -46,30 +47,37 @@ export default {
                 slider: 30,
                 textarea: ""
             },
-            height: 0
+            height: 0,
+            formPost: {
+                title: "223333322",
+                content: "33333",
+                authorId: 15,
+                category: "22244442"
+            }
         };
     },
     mounted() {
         if (window.plus) {
             this.height = plus.navigator.getStatusbarHeight();
         }
+        this.getData();
     },
     methods: {
         outPage() {
             this.$router.push("/layout/myHome");
         },
         getData() {
-            this.$axios({
-                url: '',
+            axios({
+                url: '/api/admin/article/publishMsg',
                 method: 'post',
                 headers: {
-                    'Content-Type':'application/json;charset=UTF-8'
+                    'Authorization': '25922515-2e92-4ca3-a4a0-dd372ff92b3d'
                 },
-                data: this.form
+                data: this.formPost
             }).then((result) => {
-                
+                console.log(result)
             }).catch((err) => {
-                
+                console.log(err)
             });
         }
     }
