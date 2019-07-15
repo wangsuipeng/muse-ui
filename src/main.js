@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import axios from 'axios'
@@ -9,13 +10,16 @@ import 'muse-ui/dist/muse-ui.css';
 import 'vuetify/dist/vuetify.min.css'
 import Vuetify from 'vuetify'
 import store from './store'
+import { Uploader } from 'vant';
+import { Icon } from 'vant';
 
+Vue.use(Icon);
 
 import VueTouch from 'vue-touch'
 Vue.use(VueTouch, {name: 'v-touch'})
-
+Vue.use(Uploader);
 Vue.use(Vuetify)
-Vue.use(MuseUI);
+Vue.use(MuseUI); 
 Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios;

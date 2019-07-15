@@ -39,6 +39,10 @@ export default new Router({
     {
       path: '/personalCenter',
       component: () => import('@/components/personalCenter.vue'),
+    },
+    {
+      path: '/upload',
+      component: () => import('@/components/upload.vue'),
     }
   ]
 })

@@ -7,7 +7,7 @@
         </mu-appbar>
         <div class="shop-content" :style="{height:`calc(100vh-112px-${plusHeight}px)`}">
             <div class="content">
-                <div v-ripple="{class: 'red--text'}" class="flex-box">
+                <div v-ripple="{class: 'red--text'}" class="flex-box" @click="upload">
                     <mu-icon size="56" value="favorite" color="red"></mu-icon>
                     <div>告白气球</div>
                 </div>
@@ -174,6 +174,9 @@ export default {
     methods: {
         changeValue(e) {
             console.log(e.target.innerHTML)
+        },
+        upload() {
+            this.$router.push("/upload")
         }
     }
 }
