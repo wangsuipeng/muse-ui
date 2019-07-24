@@ -46,7 +46,7 @@
                                 <mu-list-item avatar @click.native="changeValue" v-ripple>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
-                                            <img src="../assets/images/avatar1.jpg">
+                                            <img src="../assets/images/avatar1.jpg" />
                                         </mu-avatar>
                                     </mu-list-item-action>
                                     <mu-list-item-content>
@@ -59,7 +59,7 @@
                                 <mu-list-item avatar v-ripple>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
-                                            <img src="../assets/images/avatar2.jpg">
+                                            <img src="../assets/images/avatar2.jpg" />
                                         </mu-avatar>
                                     </mu-list-item-action>
                                     <mu-list-item-content>
@@ -72,7 +72,7 @@
                                 <mu-list-item avatar v-ripple>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
-                                            <img src="../assets/images/avatar3.jpg">
+                                            <img src="../assets/images/avatar3.jpg" />
                                         </mu-avatar>
                                     </mu-list-item-action>
                                     <mu-list-item-content>
@@ -85,7 +85,7 @@
                                 <mu-list-item avatar v-ripple>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
-                                            <img src="../assets/images/avatar4.jpg">
+                                            <img src="../assets/images/avatar4.jpg" />
                                         </mu-avatar>
                                     </mu-list-item-action>
                                     <mu-list-item-content>
@@ -115,7 +115,7 @@
                                 <mu-list-item avatar>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
-                                            <img src="../assets/images/avatar5.jpg">
+                                            <img src="../assets/images/avatar5.jpg" />
                                         </mu-avatar>
                                     </mu-list-item-action>
                                     <mu-list-item-content>
@@ -128,7 +128,7 @@
                                 <mu-list-item avatar>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
-                                            <img src="../assets/images/avatar6.jpg">
+                                            <img src="../assets/images/avatar6.jpg" />
                                         </mu-avatar>
                                     </mu-list-item-action>
                                     <mu-list-item-content>
@@ -138,10 +138,10 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
-                                 <mu-list-item avatar>
+                                <mu-list-item avatar>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
-                                            <img src="../assets/images/avatar6.jpg">
+                                            <img src="../assets/images/avatar6.jpg" />
                                         </mu-avatar>
                                     </mu-list-item-action>
                                     <mu-list-item-content>
@@ -163,23 +163,54 @@
 export default {
     data() {
         return {
-            plusHeight: 0,
-        }
+            plusHeight: 0
+        };
     },
-    mounted () {
+    mounted() {
         if (window.plus) {
             this.plusHeight = plus.navigator.getStatusbarHeight();
         }
+        document.addEventListener("plusready", this.plusReady());
     },
     methods: {
+        plusReady() {
+            // 监听“返回”按钮事件
+            var first = null;
+            plus.key.addEventListener("backbutton", function() {
+                //首次按键，提示‘再按一次退出应用’
+                if (!first) {
+                    first = new Date().getTime();
+                    // plus.nativeUI.alert("再按一次退出应用");
+                    plus.nativeUI.toast(
+                        '<font style="font-size:14px">再按一次返回键退出</font>',
+                        {
+                            type: "richtext",
+                            duration: "long",
+                            richTextStyle: { align: "center" }
+                        }
+                    );
+                    setTimeout(function() {
+                        plus.nativeUI.closeToast();
+                    }, 500);
+                    setTimeout(function() {
+                        first = null;
+                    }, 1000);
+                } else {
+                    if (new Date().getTime() - first < 1000) {
+                        plus.runtime.quit();
+                        // plus.nativeUI.alert("退出成功");
+                    }
+                }
+            }); // 在这里调用plus api
+        },
         changeValue(e) {
-            console.log(e.target.innerHTML)
+            console.log(e.target.innerHTML);
         },
         upload() {
-            this.$router.push("/upload")
+            this.$router.push("/upload");
         }
     }
-}
+};
 </script>
 
 <style scoped>

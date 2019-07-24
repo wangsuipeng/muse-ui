@@ -23,13 +23,13 @@
                 <span class="upload-btn">
                     <img src="../assets/images/add-pload.png" alt />
                 </span>
+                <mu-flex class="flex-wrapper toolbar-box" justify-content="start">
+                    <mu-flex class="flex-demo" justify-content="center"></mu-flex>
+                </mu-flex>
             </div>
-            <mu-flex class="flex-wrapper" justify-content="start">
-                <mu-flex class="flex-demo" justify-content="center"></mu-flex>
-            </mu-flex>
             <div class="comment">
                 <div class="avatia">
-                    <img src="../assets/325681.jpg" alt="">
+                    <img src="../assets/325681.jpg" alt />
                 </div>
                 <div class="comment-text">
                     <input type="text" placeholder="评论" />
@@ -70,8 +70,22 @@ export default {
             this.height = plus.navigator.getStatusbarHeight();
         }
         this.getData();
+        document.addEventListener("plusready", this.plusReady());
     },
     methods: {
+        plusReady() {
+            var webview = plus.webview.currentWebview();
+            plus.key.addEventListener("backbutton", function() {
+                webview.canBack(function(e) {
+                    if (e.canBack) {
+                        webview.back(); //这里不建议修改自己跳转的路径
+                    } else {
+                        webview.close(); //hide,quit
+                        //plus.runtime.quit();
+                    }
+                });
+            });
+        },
         outPage() {
             this.$router.push("/layout/myHome");
         },
@@ -97,11 +111,14 @@ export default {
 <style scoped>
 .flex-demo {
     width: 100%;
-    height: 18px;
+    height: 12px;
     background-color: #f8f8f8;
 }
 .top-nav {
     background-color: #2196f3;
+}
+.toolbar-box {
+    margin-top: 10px;
 }
 .content {
     /* padding-left: 10px; */
@@ -148,9 +165,9 @@ export default {
 }
 .comment {
     width: 100%;
-    border-top: 0.5px solid #E9E9E9;
+    border-top: 0.5px solid #e9e9e9;
     position: fixed;
-    line-height: 0!important;
+    line-height: 0 !important;
     padding: 2.8%;
     bottom: 0;
     left: 0;
@@ -174,15 +191,19 @@ export default {
     display: block;
     /* float: left; */
     width: 98%;
-    height: 30px;
+    height: 2.2rem;
     border-radius: 15px;
     margin-left: 1%;
-    background-color: #FEFBFA;
-    border: 1px solid #E9E9E9;
+    background-color: #fefbfa;
+    border: 1px solid #e9e9e9;
     /* box-shadow:inset 0 0 2px 2px #E9E9E9; */
+    border-color: #e9e9e9;
+    /* outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #e9e9e9;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #e9e9e9; */
     padding: 0 3%;
     position: relative;
-    background-color:white;
+    background-color: white;
     caret-color: red;
 }
 .comment input:after {
@@ -195,7 +216,7 @@ export default {
     display: block;
     transform: scaley(0.5);
 }
-.comment span{
+.comment span {
     display: inline-block;
     position: absolute;
     color: red;

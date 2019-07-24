@@ -14,14 +14,20 @@
                         <div class="icon-close" @click="imgclose(index)">×</div>
                     </div>
                 </div>-->
-                <van-uploader :after-read="onRead" @delete="imgclose" v-model="fileList" multiple :max-count="9" />
+                <van-uploader
+                    :after-read="onRead"
+                    @delete="imgclose"
+                    v-model="fileList"
+                    multiple
+                    :max-count="9"
+                />
                 <button @click="add">按钮</button>
                 <!-- <van-uploader
                     
                     accept="image/jpg, image/jpeg"
                     multiple
                     class="icon-add"
-                ></van-uploader> -->
+                ></van-uploader>-->
             </div>
         </div>
     </div>
@@ -37,20 +43,53 @@ export default {
             fd: []
         };
     },
+    mounted() {
+        document.addEventListener("plusready", this.plusReady());
+    },
     methods: {
+        plusReady() {
+            // 监听“返回”按钮事件
+            var first = null;
+            plus.key.addEventListener("backbutton", function() {
+                //首次按键，提示‘再按一次退出应用’
+                if (!first) {
+                    first = new Date().getTime();
+                    // plus.nativeUI.alert("再按一次退出应用");
+                    plus.nativeUI.toast(
+                        '<font style="font-size:14px">再按一次返回键退出</font>',
+                        {
+                            type: "richtext",
+                            duration: "long",
+                            richTextStyle: { align: "center" }
+                        }
+                    );
+                    setTimeout(function() {
+                        plus.nativeUI.closeToast();
+                    }, 500);
+                    setTimeout(function() {
+                        first = null;
+                    }, 1000);
+                } else {
+                    if (new Date().getTime() - first < 1000) {
+                        plus.runtime.quit();
+                        // plus.nativeUI.alert("退出成功");
+                    }
+                }
+            }); // 在这里调用plus api
+        },
         personalCenter() {
             this.$router.push("/personalCenter");
         },
         onRead(e) {
             console.log(e);
             if (e.constructor == Object) {
-                console.log("对象")
-                this.postData.push(e)
+                console.log("对象");
+                this.postData.push(e);
             } else if (e.constructor == Array) {
-                console.log("数组")
-                this.postData = this.postData.concat(e)
+                console.log("数组");
+                this.postData = this.postData.concat(e);
             }
-            console.log(this.postData)
+            console.log(this.postData);
             //注意，我们这里没有使用form表单提交文件，所以需要用new FormData来进行提交
             // this.fd = new FormData();
             // if (e && e.length) {
@@ -70,21 +109,26 @@ export default {
             //     }); //将服务器返回的图片链接添加进img数组，进行预览展示
         },
         add() {
-            let imgData = this.postData.filter(item => !this.deleteImgs.some(ele=>ele.file.lastModified===item.file.lastModified));
-            console.log("zheli ")
-            console.log(imgData)
+            let imgData = this.postData.filter(
+                item =>
+                    !this.deleteImgs.some(
+                        ele => ele.file.lastModified === item.file.lastModified
+                    )
+            );
+            console.log("zheli ");
+            console.log(imgData);
             let fd = new FormData();
-            fd.append("file")
+            fd.append("file");
             imgData.forEach(item => {
                 fd.append("file", item.file); //第一个参数字符串可以填任意命名，第二个根据对象属性来找到file
             });
         },
         //删除预览图片按钮
         imgclose(index) {
-            console.log(index)
-            console.log(index.file.lastModified)
-            this.deleteImgs.push(index)
-            console.log(this.deleteImgs)
+            console.log(index);
+            console.log(index.file.lastModified);
+            this.deleteImgs.push(index);
+            console.log(this.deleteImgs);
             // this.uploadImages.splice(e, 1);
         },
         // onRead(file) {
