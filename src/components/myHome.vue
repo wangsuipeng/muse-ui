@@ -49,33 +49,72 @@ export default {
     methods: {
         plusReady() {
             // 监听“返回”按钮事件
-            var first = null;
+            // var first = null;
+            // plus.key.addEventListener("backbutton", function() {
+            //     //首次按键，提示‘再按一次退出应用’
+            //     if (!first) {
+            //         first = new Date().getTime();
+            //         // plus.nativeUI.alert("再按一次退出应用");
+            //         plus.nativeUI.toast(
+            //             '<font style="font-size:14px">再按一次返回键退出</font>',
+            //             {
+            //                 type: "richtext",
+            //                 duration: "long",
+            //                 richTextStyle: { align: "center" }
+            //             }
+            //         );
+            //         setTimeout(function() {
+            //             plus.nativeUI.closeToast();
+            //         }, 500);
+            //         setTimeout(function() {
+            //             first = null;
+            //         }, 1000);
+            //     } else {
+            //         if (new Date().getTime() - first < 1000) {
+            //             plus.runtime.quit();
+            //             // plus.nativeUI.alert("退出成功");
+            //         }
+            //     }
+            // }); // 在这里调用plus api
+            var webview = plus.webview.currentWebview();
             plus.key.addEventListener("backbutton", function() {
-                //首次按键，提示‘再按一次退出应用’
-                if (!first) {
-                    first = new Date().getTime();
-                    // plus.nativeUI.alert("再按一次退出应用");
-                    plus.nativeUI.toast(
-                        '<font style="font-size:14px">再按一次返回键退出</font>',
-                        {
-                            type: "richtext",
-                            duration: "long",
-                            richTextStyle: { align: "center" }
-                        }
-                    );
-                    setTimeout(function() {
-                        plus.nativeUI.closeToast();
-                    }, 500);
-                    setTimeout(function() {
-                        first = null;
-                    }, 1000);
-                } else {
-                    if (new Date().getTime() - first < 1000) {
-                        plus.runtime.quit();
-                        // plus.nativeUI.alert("退出成功");
+                webview.canBack(function(e) {
+                    if (e.canBack) {
+                        webview.back();
+                    } else {
+                        //webview.close(); //hide,quit
+                        //plus.runtime.quit();
+                        //首页返回键处理
+                        //处理逻辑：1秒内，连续两次按返回键，则退出应用；
+                        var first = null;
+                        plus.key.addEventListener(
+                            "backbutton",
+                            function() {
+                                //首次按键，提示‘再按一次退出应用’
+                                if (!first) {
+                                    first = new Date().getTime();
+                                    plus.nativeUI.toast(
+                                        '<font style="font-size:14px">再按一次返回键退出</font>',
+                                        {
+                                            type: "richtext",
+                                            duration: "long",
+                                            richTextStyle: { align: "center" }
+                                        }
+                                    );
+                                    setTimeout(function() {
+                                        first = null;
+                                    }, 1000);
+                                } else {
+                                    if (new Date().getTime() - first < 1500) {
+                                        plus.runtime.quit();
+                                    }
+                                }
+                            },
+                            false
+                        );
                     }
-                }
-            }); // 在这里调用plus api
+                });
+            });
         },
         personalCenter() {
             this.$router.push("/personalCenter");

@@ -191,8 +191,8 @@ export default {
     display: block;
     /* float: left; */
     width: 98%;
-    height: 2.2rem;
-    border-radius: 15px;
+    height: 2.5rem;
+    border-radius: 1.25rem;
     margin-left: 1%;
     background-color: #fefbfa;
     border: 1px solid #e9e9e9;
@@ -201,7 +201,7 @@ export default {
     /* outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #e9e9e9;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #e9e9e9; */
-    padding: 0 3%;
+    padding: 0 6% 0 3%;
     position: relative;
     background-color: white;
     caret-color: red;
@@ -220,7 +220,7 @@ export default {
     display: inline-block;
     position: absolute;
     color: red;
-    top: 25px;
+    top: 28px;
     right: 26px;
 }
 </style>
