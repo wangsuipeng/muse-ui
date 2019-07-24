@@ -11,7 +11,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/HelloWorld'
+      redirect: '/login'
     },
     {
       path: '/layout',
@@ -33,8 +33,8 @@ export default new Router({
       ]
     },
     {
-      path: '/HelloWorld',
-      component: () => import('@/components/HelloWorld.vue'),
+      path: '/login',
+      component: () => import('@/components/login.vue'),
     },
     {
       path: '/personalCenter',

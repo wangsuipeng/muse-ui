@@ -17,21 +17,30 @@
                 <mu-flex class="flex-demo" justify-content="center"></mu-flex>
             </mu-flex>
             <div class="content-text">
-                <input type="text" placeholder="请输入标题..." class="input-text">
+                <input type="text" placeholder="请输入标题..." class="input-text" />
                 <textarea name id cols="30" rows="10" class="textarea-text" placeholder="说点什么..."></textarea>
                 <!-- <span></span> -->
                 <span class="upload-btn">
-                    <img src="../assets/images/add-pload.png" alt="">
+                    <img src="../assets/images/add-pload.png" alt />
                 </span>
             </div>
             <mu-flex class="flex-wrapper" justify-content="start">
                 <mu-flex class="flex-demo" justify-content="center"></mu-flex>
             </mu-flex>
+            <div class="comment">
+                <div class="avatia">
+                    <img src="../assets/325681.jpg" alt="">
+                </div>
+                <div class="comment-text">
+                    <input type="text" placeholder="评论" />
+                    <span>发送</span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
     data() {
         return {
@@ -68,17 +77,19 @@ export default {
         },
         getData() {
             axios({
-                url: '/api/admin/article/publishMsg',
-                method: 'post',
+                url: "/api/admin/article/publishMsg",
+                method: "post",
                 headers: {
-                    'Authorization': '25922515-2e92-4ca3-a4a0-dd372ff92b3d'
+                    Authorization: "25922515-2e92-4ca3-a4a0-dd372ff92b3d"
                 },
                 data: this.formPost
-            }).then((result) => {
-                console.log(result)
-            }).catch((err) => {
-                console.log(err)
-            });
+            })
+                .then(result => {
+                    console.log(result);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     }
 };
@@ -118,8 +129,9 @@ export default {
     border-radius: 5px;
     text-align: center;
     line-height: 135px;
-    border: 2px solid #EAEAEA;
-    box-shadow: 0 3px -1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12); 
+    border: 2px solid #eaeaea;
+    box-shadow: 0 3px -1px -2px rgba(0, 0, 0, 0.2),
+        0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 .upload-btn img {
     display: inline-block;
@@ -130,8 +142,64 @@ export default {
     width: 100%;
     height: 46px;
     padding-left: 10px;
-    border-top: 1px solid #EAEAEA;
-    border-bottom: 1px solid #EAEAEA;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
     outline: none;
+}
+.comment {
+    width: 100%;
+    border-top: 0.5px solid #E9E9E9;
+    position: fixed;
+    line-height: 0!important;
+    padding: 2.8%;
+    bottom: 0;
+    left: 0;
+}
+.avatia {
+    float: left;
+    width: 10%;
+}
+.comment-text {
+    float: left;
+    width: 90%;
+}
+.comment img {
+    display: block;
+    /* float: left; */
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+}
+.comment input {
+    display: block;
+    /* float: left; */
+    width: 98%;
+    height: 30px;
+    border-radius: 15px;
+    margin-left: 1%;
+    background-color: #FEFBFA;
+    border: 1px solid #E9E9E9;
+    /* box-shadow:inset 0 0 2px 2px #E9E9E9; */
+    padding: 0 3%;
+    position: relative;
+    background-color:white;
+    caret-color: red;
+}
+.comment input:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #d9d9d9;
+    content: " ";
+    display: block;
+    transform: scaley(0.5);
+}
+.comment span{
+    display: inline-block;
+    position: absolute;
+    color: red;
+    top: 25px;
+    right: 26px;
 }
 </style>

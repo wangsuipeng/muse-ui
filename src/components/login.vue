@@ -131,7 +131,8 @@ export default {
 }
 .btn {
     width: 100%;
-    height: 46px;
+    height: 40px;
+    border-radius: 20px;
 }
 .right {
     float: right;
