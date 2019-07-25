@@ -9,6 +9,7 @@
             <mu-button
                 flat
                 slot="right"
+                @click="replace"
                 style="display: inline-block;color: #C8C8C8;font-size: 18px"
             >发布</mu-button>
         </mu-appbar>
@@ -32,7 +33,7 @@
                     <img src="../assets/325681.jpg" alt />
                 </div>
                 <div class="comment-text">
-                    <input type="text" placeholder="评论" />
+                    <input type="text" placeholder="评论" id="inputText"/>
                     <span>发送</span>
                 </div>
             </div>
@@ -88,6 +89,9 @@ export default {
         },
         outPage() {
             this.$router.push("/layout/myHome");
+        },
+        replace() {
+            document.getElementById("inputText").focus();
         },
         getData() {
             axios({
