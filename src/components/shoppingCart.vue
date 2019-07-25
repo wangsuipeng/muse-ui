@@ -43,7 +43,7 @@
                         <mu-paper>
                             <mu-list>
                                 <mu-sub-header>Today</mu-sub-header>
-                                <mu-list-item avatar @click.native="changeValue" v-ripple>
+                                <mu-list-item avatar @click.native="changeValue" v-ripple class="muse-list">
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
                                             <img src="../assets/images/avatar1.jpg" />
@@ -56,7 +56,7 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
-                                <mu-list-item avatar v-ripple>
+                                <mu-list-item avatar v-ripple class="muse-list">
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
                                             <img src="../assets/images/avatar2.jpg" />
@@ -69,7 +69,7 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
-                                <mu-list-item avatar v-ripple>
+                                <mu-list-item avatar v-ripple class="muse-list">
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
                                             <img src="../assets/images/avatar3.jpg" />
@@ -82,7 +82,7 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
-                                <mu-list-item avatar v-ripple>
+                                <mu-list-item avatar v-ripple class="muse-list">
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
                                             <img src="../assets/images/avatar4.jpg" />
@@ -95,7 +95,7 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
-                                <mu-list-item avatar v-ripple>
+                                <mu-list-item avatar v-ripple class="muse-list">
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
                                             <!-- <img src="../assets/images/uicon.jpg"> -->
@@ -109,7 +109,7 @@
                                     </mu-list-item-action>
                                 </mu-list-item>
                             </mu-list>
-                            <mu-divider></mu-divider>
+                            <!-- <mu-divider></mu-divider> -->
                             <mu-list>
                                 <mu-sub-header>History</mu-sub-header>
                                 <mu-list-item avatar>
@@ -125,6 +125,7 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
+                                <mu-divider></mu-divider>
                                 <mu-list-item avatar>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
@@ -138,6 +139,7 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
+                                <mu-divider></mu-divider>
                                 <mu-list-item avatar>
                                     <mu-list-item-action avatar>
                                         <mu-avatar>
@@ -151,6 +153,7 @@
                                         <mu-icon value="chat_bubble"></mu-icon>
                                     </mu-list-item-action>
                                 </mu-list-item>
+                                <mu-divider></mu-divider>
                             </mu-list>
                         </mu-paper>
                     </mu-col>
@@ -246,10 +249,25 @@ export default {
     height: calc(100vh - 112px);
     overflow-y: auto;
 }
-/* .flex-wrapper:first-child {
-  margin-top: 10px;
+.muse-list {
+    position: relative;
 }
-.flex-demo:first-child {
-  margin-left: 0;
-} */
+@media screen and (-webkit-min-device-pixel-ratio: 2){
+    .muse-list:before{
+        content: "";
+        pointer-events: none; /* 防止点击触发 */
+        box-sizing: border-box;
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        left: 0;
+        top: 0;
+        /* border-radius: 8px; */
+        border-bottom:1px solid #DCDCDC;
+        -webkit-transform:scale(0.5);
+        -webkit-transform-origin: 0 0;
+        transform:scale(0.5);
+        transform-origin: 0 0;
+    }
+}
 </style>
