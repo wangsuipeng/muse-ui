@@ -72,7 +72,7 @@ export default {
         };
     },
     mounted () {
-        document.addEventListener("plusready", this.plusReady());
+        // document.addEventListener("plusready", this.plusReady());
     },
     methods: {
          plusReady() {

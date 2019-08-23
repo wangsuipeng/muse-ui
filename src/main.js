@@ -8,6 +8,8 @@ import axios from 'axios'
 import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
 import 'vuetify/dist/vuetify.min.css'
+// import mui from './assets/mui-master/js/mui';
+import Mui from 'vue-awesome-mui'
 import Vuetify from 'vuetify'
 import store from './store'
 import { Uploader } from 'vant';
@@ -22,6 +24,7 @@ Vue.use(VueTouch, {name: 'v-touch'})
 Vue.use(Uploader);
 Vue.use(Vuetify)
 Vue.use(MuseUI); 
+Vue.use(Mui);
 Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios;

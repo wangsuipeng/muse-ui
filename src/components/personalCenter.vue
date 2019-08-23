@@ -71,7 +71,7 @@ export default {
             this.height = plus.navigator.getStatusbarHeight();
         }
         this.getData();
-        document.addEventListener("plusready", this.plusReady());
+        // document.addEventListener("plusready", this.plusReady());
     },
     methods: {
         plusReady() {

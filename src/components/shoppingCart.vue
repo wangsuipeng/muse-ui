@@ -173,7 +173,7 @@ export default {
         if (window.plus) {
             this.plusHeight = plus.navigator.getStatusbarHeight();
         }
-        document.addEventListener("plusready", this.plusReady());
+        // document.addEventListener("plusready", this.plusReady());
     },
     methods: {
         plusReady() {
