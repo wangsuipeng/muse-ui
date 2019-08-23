@@ -2,17 +2,26 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css">
-  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1294769_gbx2b7bnbw.css">
-  <title>muse-ui</title>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1294769_gbx2b7bnbw.css">
+    <title>muse-ui</title>
 </head>
 
 <body>
-  <div id="app"></div>
-  <!-- built files will be auto injected -->
+    <div id="app"></div>
+    <script>
+        //得到手机屏幕的宽度
+        let htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;
+        //得到html的Dom元素
+        let htmlDom = document.getElementsByTagName('html')[0];
+        if (htmlWidth > 750) { htmlWidth = 750 }
+        //设置根元素字体大小
+        htmlDom.style.fontSize = htmlWidth / 20 + 'px';
+    </script>
+    <!-- built files will be auto injected -->
 </body>
 
 </html>

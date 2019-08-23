@@ -12,7 +12,9 @@ import Vuetify from 'vuetify'
 import store from './store'
 import { Uploader } from 'vant';
 import { Icon } from 'vant';
+import { Row, Col } from 'vant';
 
+Vue.use(Row).use(Col);
 Vue.use(Icon);
 
 import VueTouch from 'vue-touch'
