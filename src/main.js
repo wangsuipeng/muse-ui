@@ -10,6 +10,7 @@ import 'muse-ui/dist/muse-ui.css';
 import 'vuetify/dist/vuetify.min.css'
 // import mui from './assets/mui-master/js/mui';
 import Mui from 'vue-awesome-mui'
+// import mui from './utils/mui.js'
 import Vuetify from 'vuetify'
 import store from './store'
 import { Uploader } from 'vant';
@@ -27,6 +28,7 @@ Vue.use(MuseUI);
 Vue.use(Mui);
 Vue.config.productionTip = false
 
+// Vue.prototype.mui = mui;
 Vue.prototype.$axios = axios;
 // axios.defaults.baseURL = 'http://103.26.76.116:9999/';
 VueTouch.config.swipe = {

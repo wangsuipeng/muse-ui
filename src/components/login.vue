@@ -72,7 +72,7 @@ export default {
         };
     },
     mounted() {
-        this.backgrounds();
+        // this.backgrounds();
     },
     methods: {
         backgrounds() {

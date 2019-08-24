@@ -16,5 +16,6 @@
       "libraryDirectory": "es",
       "style": true
     }]
-  ]
+  ],
+  "ignore":["./src/utils/mui.js"],
 }
