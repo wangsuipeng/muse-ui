@@ -1,5 +1,6 @@
 <template>
-    <div class="notic">
+    <div class="notic" style="height:100vh;">
+        <div :style="{height: `${height}px`,overflow: 'hidden'}" class="top-nav"></div>
         <v-touch v-on:swipeleft="onSwipeLeft" v-on:swiperight="onSwipeRight">
             <mu-container class="main-content">
                 <mu-tabs :value.sync="active" color="green" indicator-color="yellow" full-width>
@@ -68,10 +69,16 @@ export default {
             imgs: [], // 图片预览地址
             imgfiles: [], // 图片原文件，上传到后台的数据
             size: 5 ,// 限制上传数量
-            postData: []
+            postData: [],
+            height: 0
         };
     },
+    created () {
+    },
     mounted () {
+        if(plus.navigator.isImmersedStatusbar()){// 判斷当前是否支持沉浸式状态栏
+            this.height = plus.navigator.getStatusbarHeight();
+        }
         //首页返回键处理
         //处理逻辑：1秒内，连续两次按返回键，则退出应用；
         var first = null;
@@ -208,18 +215,6 @@ export default {
     }
 };
 </script>
-<style scoped>
-.upload-img-5 {
-    margin: 5px 0 90px 0;
-}
-.upload-img-1 {
-    margin: 5px 0 15px 0;
-}
-.imgPreview {
-    width: 100px;
-    height: 100px;
-}
-</style>
 
 <style lang="less">
 .demo-text {
@@ -231,6 +226,19 @@ export default {
 }
 </style>
 <style scoped>
+.top-nav {
+    background-color: #4CAF50;
+}
+.upload-img-5 {
+    margin: 5px 0 90px 0;
+}
+.upload-img-1 {
+    margin: 5px 0 15px 0;
+}
+.imgPreview {
+    width: 100px;
+    height: 100px;
+}
 .notic {
     width: 100%;
     height: 100%;

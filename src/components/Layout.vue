@@ -1,6 +1,6 @@
 <template>
     <div style="height:100vh;">
-        <div :style="{height: `${height}px`,overflow: 'hidden'}" class="top-nav"></div>
+        <!-- <div :style="{height: `${height}px`,overflow: 'hidden'}" class="top-nav"></div> -->
         <content-main></content-main>
         <footer-nav></footer-nav>
     </div>

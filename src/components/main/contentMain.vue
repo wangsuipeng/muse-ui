@@ -1,10 +1,10 @@
 <template>
     <div :style="{height: `calc(100vh - ${plusHeight}px - 56px)`}" class="box">
-        <transition :name="transitionName">
-            <keep-alive>
+        <!-- <transition :name="transitionName"> -->
+            <!-- <keep-alive> -->
                 <router-view :key="key" class="Router"/>
-            </keep-alive>
-        </transition>
+            <!-- </keep-alive> -->
+        <!-- </transition> -->
     </div>
 </template>
 <script>

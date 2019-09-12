@@ -72,6 +72,9 @@ export default {
         };
     },
     mounted() {
+        if (window.plus) {
+            plus.navigator.setStatusBarStyle("dark");
+        }
         // this.backgrounds();
     },
     methods: {

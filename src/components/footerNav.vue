@@ -26,6 +26,7 @@ export default {
             this.$router.goBack();
         },
         handle(val) {
+            console.log(val)
             this.$store.dispatch("CHANGE_NAV", val);
             this.$router.push(`/layout/${val}`);
         }

@@ -16,7 +16,9 @@ import store from './store'
 import { Uploader } from 'vant';
 import { Icon } from 'vant';
 import { Row, Col } from 'vant';
+import { Button } from 'vant';
 
+Vue.use(Button);
 Vue.use(Row).use(Col);
 Vue.use(Icon);
 

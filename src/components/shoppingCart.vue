@@ -1,5 +1,6 @@
 <template>
     <div class="shopping">
+        <div :style="{height: `${height}px`,overflow: 'hidden'}" class="top-nav"></div>
         <mu-appbar color="#2196f3" style="margin-bottom: 10px">
             <mu-button icon slot="left">
                 <mu-icon value="menu"></mu-icon>
@@ -166,10 +167,16 @@
 export default {
     data() {
         return {
-            plusHeight: 0
+            plusHeight: 0,
+            height: 0
         };
     },
+    created () {
+    },
     mounted() {
+        if(plus.navigator.isImmersedStatusbar()){// 判斷当前是否支持沉浸式状态栏
+            this.height = plus.navigator.getStatusbarHeight();
+        }
         //首页返回键处理
         //处理逻辑：1秒内，连续两次按返回键，则退出应用；
         var first = null;
@@ -237,6 +244,9 @@ export default {
 </script>
 
 <style scoped>
+.top-nav {
+    background-color: #2196f3;
+}
 .content {
     width: 100%;
 }
